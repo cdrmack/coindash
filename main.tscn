@@ -9,7 +9,7 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_ifpfb")
 coin_scene = ExtResource("4_yimak")
-playtime = 5
+playtime = 2
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15

@@ -6,7 +6,6 @@ var score = 0
 var time_left = 0
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screensize = get_viewport().get_visible_rect().size
 	$Player.hide()
@@ -33,13 +32,19 @@ func _on_game_timer_timeout() -> void:
 		game_over()
 
 
+# TODO: reset player's position
 func _on_hud_start_game() -> void:
+	score = 0
+	time_left = playtime
+	$HUD.update_timer(time_left)
+	$HUD.update_score(score)
 	spawn_coins()
 	$Player.show()
-	time_left = playtime
 	$GameTimer.start()
 
 
 func game_over():
 	$GameTimer.stop()
-	# TODO, game over screen
+	get_tree().call_group("coins", "queue_free")
+	$HUD.show_game_over()
+	$Player.hide()

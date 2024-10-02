@@ -64,4 +64,9 @@ theme_override_fonts/font = ExtResource("1_8iw8k")
 theme_override_font_sizes/font_size = 48
 text = "START"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="pressed" from="StartButton" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
