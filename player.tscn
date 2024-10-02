@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://lnrf8yt0d3qm"]
+[gd_scene load_steps=14 format=3 uid="uid://lnrf8yt0d3qm"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_72c08"]
 [ext_resource type="Texture2D" uid="uid://b1cmjym8sma7y" path="res://assets/player/idle/player-idle-1.png" id="1_k2h0l"]
 [ext_resource type="Texture2D" uid="uid://b6avtb5k8m3o2" path="res://assets/player/idle/player-idle-2.png" id="2_kxivp"]
 [ext_resource type="Texture2D" uid="uid://dxcax5ulxeqv2" path="res://assets/player/idle/player-idle-3.png" id="3_io5t5"]
 [ext_resource type="Texture2D" uid="uid://b013r5alfxmx1" path="res://assets/player/idle/player-idle-4.png" id="4_bx8td"]
+[ext_resource type="Texture2D" uid="uid://df4mwpew21alh" path="res://assets/player/run/player-run-1.png" id="6_mfw4x"]
+[ext_resource type="Texture2D" uid="uid://c7iwrr44gx2en" path="res://assets/player/run/player-run-2.png" id="7_xgofr"]
+[ext_resource type="Texture2D" uid="uid://uqx7138xrvkk" path="res://assets/player/run/player-run-3.png" id="8_c2mn8"]
+[ext_resource type="Texture2D" uid="uid://cjrd18e8wdcwn" path="res://assets/player/run/player-run-4.png" id="9_v05cx"]
+[ext_resource type="Texture2D" uid="uid://cjo2x2caeg617" path="res://assets/player/run/player-run-5.png" id="10_17pkv"]
+[ext_resource type="Texture2D" uid="uid://cnmjhhkknieii" path="res://assets/player/run/player-run-6.png" id="11_rbops"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5a6ge"]
 animations = [{
@@ -24,6 +30,29 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_mfw4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xgofr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_c2mn8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_v05cx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_17pkv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rbops")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_velqc"]
@@ -35,8 +64,9 @@ script = ExtResource("1_72c08")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_5a6ge")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
+frame_progress = 0.33336
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
