@@ -67,7 +67,7 @@ sprite_frames = SubResource("SpriteFrames_5a6ge")
 animation = &"run"
 autoplay = "idle"
 frame_progress = 0.33336
+offset = Vector2(0, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_velqc")
