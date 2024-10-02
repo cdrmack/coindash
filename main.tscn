@@ -21,11 +21,11 @@ texture = ExtResource("1_x6j6g")
 stretch_mode = 1
 
 [node name="GameTimer" type="Timer" parent="."]
-autostart = true
 
 [node name="HUD" parent="." instance=ExtResource("4_n627o")]
 
 [node name="Player" parent="." instance=ExtResource("2_84gs2")]
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="pickup" from="Player" to="." method="_on_player_pickup"]

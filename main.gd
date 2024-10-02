@@ -9,14 +9,9 @@ var time_left = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screensize = get_viewport().get_visible_rect().size
-	$Player.screensize = screensize
-	spawn_coins()
+	$Player.hide()
 	time_left = playtime
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+	$HUD.update_timer(time_left)
 
 
 func spawn_coins():
@@ -35,4 +30,16 @@ func _on_game_timer_timeout() -> void:
 	time_left -= 1
 	$HUD.update_timer(time_left)
 	if time_left <= 0:
-		print("GAME OVER")
+		game_over()
+
+
+func _on_hud_start_game() -> void:
+	spawn_coins()
+	$Player.show()
+	time_left = playtime
+	$GameTimer.start()
+
+
+func game_over():
+	$GameTimer.stop()
+	# TODO, game over screen
