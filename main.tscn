@@ -7,6 +7,7 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ifpfb")
+coin_scene = ExtResource("4_yimak")
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -16,11 +17,5 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_x6j6g")
 stretch_mode = 1
-
-[node name="Coin" parent="." instance=ExtResource("4_yimak")]
-position = Vector2(134, 221)
-
-[node name="Coin2" parent="." instance=ExtResource("4_yimak")]
-position = Vector2(328, 387)
 
 [node name="Player" parent="." instance=ExtResource("2_84gs2")]
