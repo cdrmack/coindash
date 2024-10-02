@@ -2,7 +2,7 @@ extends Area2D
 @export var speed = 350
 var screensize = Vector2(480, 720)
 var velocity = Vector2.ZERO
-
+signal pickup
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,3 +28,4 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("coins"):
 		area.pickup()
+		pickup.emit()
