@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://uwfpeihgvcvq"]
+[gd_scene load_steps=5 format=3 uid="uid://uwfpeihgvcvq"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ifpfb"]
 [ext_resource type="Texture2D" uid="uid://6ixshqtk2ep1" path="res://assets/grass.png" id="1_x6j6g"]
 [ext_resource type="PackedScene" uid="uid://lnrf8yt0d3qm" path="res://player.tscn" id="2_84gs2"]
+[ext_resource type="PackedScene" uid="uid://bwctq0pn2pm4h" path="res://coin.tscn" id="4_yimak"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ifpfb")
@@ -15,5 +16,11 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_x6j6g")
 stretch_mode = 1
+
+[node name="Coin" parent="." instance=ExtResource("4_yimak")]
+position = Vector2(134, 221)
+
+[node name="Coin2" parent="." instance=ExtResource("4_yimak")]
+position = Vector2(328, 387)
 
 [node name="Player" parent="." instance=ExtResource("2_84gs2")]

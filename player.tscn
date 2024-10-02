@@ -60,14 +60,16 @@ size = Vector2(26, 44)
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_72c08")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_5a6ge")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.33336
 offset = Vector2(0, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_velqc")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
