@@ -2,6 +2,7 @@ extends Node
 
 @export var coin_scene: PackedScene
 @export var powerup_scene: PackedScene
+@export var obstacle_scene: PackedScene
 @export var playtime = 30
 
 var screensize = Vector2.ZERO
@@ -16,6 +17,13 @@ func _ready() -> void:
 	$HUD.update_timer(time_left)
 	$PowerupTimer.wait_time = randf_range(5, 10)
 	$PowerupTimer.start()
+
+
+func spawn_obstacles():
+	for i in 4:
+		var o = obstacle_scene.instantiate()
+		add_child(o)
+		o.position = Vector2(randi_range(0, 0.8 * screensize.x), randi_range(0, 0.8 * screensize.y))
 
 
 func spawn_coins():
@@ -52,6 +60,7 @@ func _on_hud_start_game() -> void:
 	$HUD.update_timer(time_left)
 	$HUD.update_score(score)
 	spawn_coins()
+	spawn_obstacles()
 	$Player.show()
 	$GameTimer.start()
 
@@ -60,11 +69,17 @@ func game_over():
 	$EndSound.play()
 	$GameTimer.stop()
 	get_tree().call_group("coins", "queue_free")
+	get_tree().call_group("obstacles", "queue_free")
+	get_tree().call_group("powerups", "queue_free")
 	$HUD.show_game_over()
 	$Player.hide()
-
+	$PowerupTimer.stop()
 
 func _on_powerup_timer_timeout() -> void:
 	var p = powerup_scene.instantiate()
 	add_child(p)
 	p.position = Vector2(randi_range(0, screensize.x), randi_range(0, screensize.y))
+
+
+func _on_player_hurt() -> void:
+	game_over()

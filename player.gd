@@ -3,6 +3,7 @@ extends Area2D
 var screensize = Vector2(480, 720)
 var velocity = Vector2.ZERO
 signal pickup
+signal hurt
 
 
 func _ready() -> void:
@@ -31,3 +32,5 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("powerups"):
 		area.pickup()
 		pickup.emit("powerup")
+	if area.is_in_group("obstacles"):
+		hurt.emit()
