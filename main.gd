@@ -8,6 +8,17 @@ extends Node
 var screensize = Vector2.ZERO
 var score = 0
 var time_left = 0
+var level = 1
+var alive = false
+
+
+func _process(_delta: float) -> void:
+	if alive and get_tree().get_nodes_in_group("coins").size() == 0:
+		level += 1
+		time_left += 5
+		spawn_coins()
+		$PowerupTimer.wait_time = randf_range(5, 10)
+		$PowerupTimer.start()
 
 
 func _ready() -> void:
@@ -28,7 +39,7 @@ func spawn_obstacles():
 
 func spawn_coins():
 	$LevelSound.play()
-	for i in 8:
+	for i in 8 + level:
 		var c = coin_scene.instantiate()
 		add_child(c)
 		c.position = Vector2(randi_range(0, screensize.x), randi_range(0, screensize.y))
@@ -55,6 +66,7 @@ func _on_game_timer_timeout() -> void:
 
 # TODO: reset player's position
 func _on_hud_start_game() -> void:
+	alive = true
 	score = 0
 	time_left = playtime
 	$HUD.update_timer(time_left)
@@ -66,6 +78,8 @@ func _on_hud_start_game() -> void:
 
 
 func game_over():
+	alive = false
+	level = 1
 	$EndSound.play()
 	$GameTimer.stop()
 	get_tree().call_group("coins", "queue_free")
