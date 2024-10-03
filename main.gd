@@ -14,6 +14,7 @@ func _ready() -> void:
 
 
 func spawn_coins():
+	$LevelSound.play()
 	for i in 8:
 		var c = coin_scene.instantiate()
 		add_child(c)
@@ -21,6 +22,7 @@ func spawn_coins():
 
 
 func _on_player_pickup() -> void:
+	$CoinSound.play()
 	score += 1
 	$HUD.update_score(score)
 
@@ -44,6 +46,7 @@ func _on_hud_start_game() -> void:
 
 
 func game_over():
+	$EndSound.play()
 	$GameTimer.stop()
 	get_tree().call_group("coins", "queue_free")
 	$HUD.show_game_over()
