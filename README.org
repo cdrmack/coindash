@@ -1,0 +1,3 @@
+Based on "Godot 4 Game Development Projects" book by Chris Bradfield.
+
+[[./coindash.png]]
